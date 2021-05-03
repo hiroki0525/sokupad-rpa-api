@@ -23,17 +23,32 @@ class ExecOption(BaseModel):
     headless: bool = Field(False, description="ヘッドレスブラウザで実行するか")
 
 
+class DepositData(BaseModel):
+    user: User = Field(..., description="ユーザー情報")
+    amount: int = Field(..., description="入金額")
+    option: ExecOption = Field(None, description="実行オプション")
+
+
 class BuyData(BaseModel):
     user: User = Field(..., description="ユーザー情報")
     purchases: List[Purchase] = Field(..., description="購入情報。配列で指定した順番で実行")
     option: ExecOption = Field(None, description="実行オプション")
 
 
-@app.post('/racecourse/{racecourse}/buy') # methodとendpointの指定
+@app.post('/deposit')
+async def deposit(
+        data: DepositData = Body(...),
+):
+    return {
+        "data": data
+    }
+
+
+@app.post('/racecourse/{racecourse}/buy')
 async def buy(
         racecourse: str = Path(..., description="競馬場名"),
         data: BuyData = Body(...),
-    ):
+):
     return {
         "racecourse": racecourse,
         "data": data
