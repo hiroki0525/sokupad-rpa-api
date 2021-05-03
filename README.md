@@ -20,3 +20,12 @@ poetry config virtualenvs.in-project true
 
 ## API仕様書
 http://127.0.0.1:8000/docs
+
+## テスト
+コマンド
+
+`pytest`
+
+## 参考
+* FastAPI
+https://qiita.com/bee2/items/75d9c0d7ba20e7a4a0e9
