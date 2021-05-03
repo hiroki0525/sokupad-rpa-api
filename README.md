@@ -11,5 +11,9 @@ source $HOME/.poetry/env
 poetry config virtualenvs.in-project true
 ```
 
+2. 依存パッケージ導入
+
+`poetry install`
+
 ## ローカルサーバーの起動
 `poetry run uvicorn server:app --reload`
