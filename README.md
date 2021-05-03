@@ -17,3 +17,6 @@ poetry config virtualenvs.in-project true
 
 ## ローカルサーバーの起動
 `poetry run uvicorn server:app --reload`
+
+## API仕様書
+http://127.0.0.1:8000/docs

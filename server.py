@@ -47,7 +47,7 @@ async def deposit(
 @app.post('/racecourse/{racecourse}/buy')
 async def buy(
         racecourse: str = Path(..., description="競馬場名"),
-        data: BuyData = Body(...),
+        data: BuyData = Body(...)
 ):
     return {
         "racecourse": racecourse,
