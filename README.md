@@ -12,4 +12,4 @@ poetry config virtualenvs.in-project true
 ```
 
 ## ローカルサーバーの起動
-`poetry run uvicorn api:app --reload`
+`poetry run uvicorn server:app --reload`
