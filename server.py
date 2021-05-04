@@ -2,7 +2,7 @@ import os
 from enum import Enum
 from typing import List
 
-from fastapi import FastAPI, Body
+from fastapi import FastAPI, Body, BackgroundTasks
 from pydantic import BaseModel, Field
 
 from autoload.module_loader import ModuleLoader
@@ -48,9 +48,11 @@ class BuyData(BaseModel):
 
 @app.post(f'/{RpaMethod.DEPOSIT.value}', response_model=DepositData, status_code=201)
 async def deposit(
-        data: DepositData = Body(...)
+        data: DepositData,
+        background_tasks: BackgroundTasks
 ):
-    loader.load_function(RpaMethod.DEPOSIT.value)()
+    func = loader.load_function(RpaMethod.DEPOSIT.value)
+    background_tasks.add_task(func, data)
     return data
 
 
