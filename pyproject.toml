@@ -12,6 +12,7 @@ uvicorn = "^0.13.4"
 selenium = "^3.141.0"
 chromedriver-binary = "^91.0.4472"
 autoload-module = "^1.2.0"
+PyYAML = "^5.4.1"
 
 [tool.poetry.dev-dependencies]
 requests = "^2.25.1"

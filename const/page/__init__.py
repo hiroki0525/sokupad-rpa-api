@@ -1,4 +1,5 @@
 from typing import NamedTuple, Type, List
+import yaml
 
 
 class Element(NamedTuple):
@@ -13,3 +14,26 @@ class Page(NamedTuple):
     description: str
     url: str
     elements: List[Type[Element]]
+
+
+with open('pages.yaml', 'r') as yml:
+    config = yaml.safe_load(yml)
+
+
+page_settings = {}
+for type, pages in config.items():
+    page_instances = []
+    for page in pages:
+        elements = page.get('elements')
+        page_instances.append(Page(
+            page.get('name'),
+            page.get('description'),
+            page.get('url'),
+            [Element(
+                element.get('name'),
+                element.get('description'),
+                element.get('type'),
+                element.get('selector'),
+            ) for element in elements],
+        ))
+    page_settings[type] = page_instances
