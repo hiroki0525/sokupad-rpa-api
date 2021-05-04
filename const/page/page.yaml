@@ -1,0 +1,84 @@
+- name: login
+  description: ログイン
+  url: xxx
+  elements:
+    - name: id
+      description: 加入者番号
+      type: input
+      selector: xxx
+    - name: password
+      description: 暗証番号
+      type: input
+      selector: xxx
+    - name: p_ars
+      description: P-ARS番号
+      type: input
+      selector: xxx
+    - name: login
+      description: ログインボタン
+      type: button
+      selector: xxx
+- name: notice
+  description: お知らせ
+  url: xxx
+  elements:
+    - name: ok
+      description: OKボタン
+      type: button
+      selector: xxx
+- name: top
+  description: トップ
+  url: xxx
+  elements:
+    - name: money
+      description: 入出金メニュー
+      type: link
+      selector: xxx
+    - name: vote
+      description: 通常投票
+      type: link
+      selector: xxx
+- name: money
+  description: 入出金メニュー
+  url: xxx
+  elements:
+    - name: deposit
+      description: 入出指示
+      type: link
+      selector: xxx
+    - name: end
+      description: 終了ボタン
+      type: button
+      selector: xxx
+- name: deposit
+  description: 入出指示
+  url: xxx
+  elements:
+    - name: price
+      description: 入金金額
+      type: input
+      selector: xxx
+    - name: confirm
+      description: 確認ボタン
+      type: button
+      selector: xxx
+- name: execute_deposit
+  description: 入金実行
+  url: xxx
+  elements:
+    - name: password
+      description: 暗証番号
+      type: input
+      selector: xxx
+    - name: excute
+      description: 実行ボタン
+      type: button
+      selector: xxx
+- name: complete_deposit
+  description: 入金完了
+  url: xxx
+  elements:
+    - name: money
+      description: 入出金メニュー
+      type: button
+      selector: xxx

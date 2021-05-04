@@ -12,7 +12,7 @@ class Purchase(BaseModel):
     racecourse: str = Field(..., description="競馬場名"),
     type: str = Field(..., description="買い目")
     horse_numbers: List[int] = Field(..., description="馬番")
-    price: int = Field(..., description="購入金額")
+    price: int = Field(..., ge=100, description="購入金額")
 
 
 class ExecOption(BaseModel):
