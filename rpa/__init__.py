@@ -3,7 +3,7 @@ import time
 from selenium.webdriver.chrome.webdriver import WebDriver
 
 
-class SokupadRPA():
+class Sokupad():
 
     def __init__(self, init_url="", sleep=5):
         self.__driver = WebDriver()
@@ -14,3 +14,4 @@ class SokupadRPA():
         time.sleep(sleep if sleep is not None else self.__sleep)
 
     def get(self, url=""):
+        return self.__driver.get(url)

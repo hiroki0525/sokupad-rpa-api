@@ -21,6 +21,14 @@ tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)"
 tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six"]
 
 [[package]]
+name = "autoload-module"
+version = "1.2.0"
+description = "Python Autoload Module"
+category = "main"
+optional = false
+python-versions = ">=3.8,<4.0"
+
+[[package]]
 name = "certifi"
 version = "2020.12.5"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -263,7 +271,7 @@ standard = ["websockets (>=8.0.0,<9.0.0)", "watchgod (>=0.6)", "python-dotenv (>
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9.4"
-content-hash = "6df52627ba735fb5d448db1de91876a516367e30260c98142181debc89064aeb"
+content-hash = "bae8c5f1d50c279cb5288406c6946a69a520d887f3ab8e9f96127d6b8ea494ba"
 
 [metadata.files]
 atomicwrites = [
@@ -273,6 +281,10 @@ atomicwrites = [
 attrs = [
     {file = "attrs-20.3.0-py2.py3-none-any.whl", hash = "sha256:31b2eced602aa8423c2aea9c76a724617ed67cf9513173fd3a4f03e3a929c7e6"},
     {file = "attrs-20.3.0.tar.gz", hash = "sha256:832aa3cde19744e49938b91fea06d69ecb9e649c93ba974535d08ad92164f700"},
+]
+autoload-module = [
+    {file = "autoload-module-1.2.0.tar.gz", hash = "sha256:aa59e8627ba063df91b810cfa362dccb7ffae4fd10cb282a14bc19b1a93c59c0"},
+    {file = "autoload_module-1.2.0-py3-none-any.whl", hash = "sha256:c2ddd25b876d8a62e97fffd759ca5937a3e40b9bcac8569d14c1dbb5ca1b9f8e"},
 ]
 certifi = [
     {file = "certifi-2020.12.5-py2.py3-none-any.whl", hash = "sha256:719a74fb9e33b9bd44cc7f3a8d94bc35e4049deebe19ba7d8e108280cfd59830"},

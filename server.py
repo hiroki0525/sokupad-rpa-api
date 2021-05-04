@@ -1,9 +1,19 @@
+import os
+from enum import Enum
 from typing import List
 
-from fastapi import FastAPI, Path, Body
+from fastapi import FastAPI, Body
 from pydantic import BaseModel, Field
 
+from autoload.module_loader import ModuleLoader
+
+loader = ModuleLoader(os.path.abspath('rpa'))
 app = FastAPI()
+
+
+class RpaMethod(Enum):
+    DEPOSIT = "deposit"
+    BUY = "buy"
 
 
 class User(BaseModel):
@@ -32,19 +42,21 @@ class DepositData(BaseModel):
 
 class BuyData(BaseModel):
     user: User = Field(..., description="ユーザー情報")
-    purchases: List[Purchase] = Field(..., description="購入情報。配列で指定した順番で実行")
+    # purchases: List[Purchase] = Field(..., description="購入情報。配列で指定した順番で実行")
     option: ExecOption = Field(None, description="実行オプション")
 
 
-@app.post('/deposit', response_model=DepositData, status_code=201)
+@app.post(f'/{RpaMethod.DEPOSIT.value}', response_model=DepositData, status_code=201)
 async def deposit(
-        data: DepositData = Body(...),
+        data: DepositData = Body(...)
 ):
+    loader.load_function(RpaMethod.DEPOSIT.value)()
     return data
 
 
-@app.post('/buy', response_model=BuyData, status_code=201)
+@app.post(f'/{RpaMethod.BUY.value}', response_model=BuyData, status_code=201)
 async def buy(
         data: BuyData = Body(...)
 ):
+    loader.load_function(RpaMethod.BUY.value)()
     return data
