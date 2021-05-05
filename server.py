@@ -7,6 +7,9 @@ from autoload.module_loader import ModuleLoader
 
 from const.model import DepositData, BuyData
 
+# パスを通すためにimport
+import chromedriver_binary
+
 loader = ModuleLoader(os.path.abspath('rpa'))
 app = FastAPI()
 

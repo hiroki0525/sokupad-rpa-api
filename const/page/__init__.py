@@ -1,4 +1,4 @@
-from typing import NamedTuple, Type, List
+from typing import NamedTuple, List
 import yaml
 
 
@@ -13,15 +13,14 @@ class Page(NamedTuple):
     name: str
     description: str
     url: str
-    elements: List[Type[Element]]
+    elements: List[Element]
 
 
 with open('pages.yaml', 'r') as yml:
     config = yaml.safe_load(yml)
 
-
 page_settings = {}
-for type, pages in config.items():
+for race_type, pages in config.items():
     page_instances = []
     for page in pages:
         elements = page.get('elements')
@@ -36,4 +35,4 @@ for type, pages in config.items():
                 element.get('selector'),
             ) for element in elements],
         ))
-    page_settings[type] = page_instances
+    page_settings[race_type] = page_instances
