@@ -1,5 +1,6 @@
 chiho:
-  - name: login
+  login:
+    name: login
     description: ログイン
     url: 'https://n.ipat.jra.go.jp/sp/'
     elements:
@@ -19,7 +20,8 @@ chiho:
         description: ログインボタン
         type: button
         selector: '#login > div > div.loginForm > div.btnWrap > ul > li > a'
-  - name: notice
+  notice:
+    name: notice
     description: お知らせ
     url: 'https://n.ipat.jra.go.jp/sp/pw_732_i.cgi'
     elements:
@@ -27,7 +29,8 @@ chiho:
         description: OKボタン
         type: button
         selector: '#message > div > div.btnWrap > ul > li > a'
-  - name: top
+  top:
+    name: top
     description: トップ
     url: 'https://n.ipat.jra.go.jp/sp/pw_732_i.cgi'
     elements:
@@ -39,7 +42,8 @@ chiho:
         description: 通常投票
         type: link
         selector: '#voteMenu > div > nav > ul > li:nth-child(2) > a'
-  - name: money
+  money:
+    name: money
     description: 入出金メニュー
     url: 'https://un.sp.jra.go.jp/jraaccount2009s/'
     elements:
@@ -51,7 +55,8 @@ chiho:
         description: 終了ボタン
         type: button
         selector: '#logoff'
-  - name: deposit
+  deposit:
+    name: deposit
     description: 入出指示
     url: 'https://un.sp.jra.go.jp/jraaccount2009s/nyukin'
     elements:
@@ -63,7 +68,8 @@ chiho:
         description: 確認ボタン
         type: button
         selector: '#nyukin-confirm'
-  - name: execute_deposit
+  execute_deposit:
+    name: execute_deposit
     description: 入金実行
     url: 'https://un.sp.jra.go.jp/jraaccount2009s/nyukin'
     elements:
@@ -75,7 +81,8 @@ chiho:
         description: 実行ボタン
         type: button
         selector: '#nyukin-exec'
-  - name: complete_deposit
+  complete_deposit:
+    name: complete_deposit
     description: 入金完了
     url: 'https://un.sp.jra.go.jp/jraaccount2009s/nyukin'
     elements:

@@ -19,12 +19,11 @@ class Page(NamedTuple):
 with open('pages.yaml', 'r') as yml:
     config = yaml.safe_load(yml)
 
-page_settings = {}
+page_setting = {}
 for race_type, pages in config.items():
-    page_instances = []
-    for page in pages:
+    for page_key, page in pages.items():
         elements = page.get('elements')
-        page_instances.append(Page(
+        page_setting[race_type][page_key] = Page(
             page.get('name'),
             page.get('description'),
             page.get('url'),
@@ -34,5 +33,4 @@ for race_type, pages in config.items():
                 element.get('type'),
                 element.get('selector'),
             ) for element in elements],
-        ))
-    page_settings[race_type] = page_instances
+        )
