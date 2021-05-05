@@ -1,3 +1,5 @@
+from random import randrange
+
 import time
 
 from selenium import webdriver
@@ -12,7 +14,7 @@ class SokupadClient:
 
     @staticmethod
     def wait() -> None:
-        time.sleep(10)
+        time.sleep(randrange(5, 10))
 
     def get(self, url: str) -> None:
         return self.__driver.get(url)
