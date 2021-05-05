@@ -5,19 +5,21 @@ from infra.sokupad_client import SokupadClient
 
 class AbstractRpa(ABC):
 
-    def __init__(self):
-        self.__client = SokupadClient()
+    def __init__(self, data):
+        self._client = SokupadClient()
+        self._data = data
 
     def run(self):
         self.start()
         self.process()
         self.end()
 
-    def start(self, **kwargs) -> None:
-        self.__client.login(kwargs['id'], kwargs['password'], kwargs['p_ars'])
+    def start(self) -> None:
+        data = self._data
+        self._client.login(data['id'], data['password'], data['p_ars'])
 
     def end(self) -> None:
-        self.__client.quit()
+        self._client.quit()
 
     @abstractmethod
     def process(self) -> None:

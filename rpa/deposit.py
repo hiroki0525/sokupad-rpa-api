@@ -1,7 +1,7 @@
-from infra.sokupad_client import SokupadClient
+from rpa import AbstractRpa
 
 
-def deposit(data):
-    client = SokupadClient()
-    client.login(data['id'], data['password'], data['p_ars'])
-    client.quit()
+class Deposit(AbstractRpa):
+
+    def process(self) -> None:
+        data = self._data

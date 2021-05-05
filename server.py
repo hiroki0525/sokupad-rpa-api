@@ -7,9 +7,6 @@ from autoload.module_loader import ModuleLoader
 
 from const.model import DepositData, BuyData
 
-# パスを通すためにimport
-import chromedriver_binary
-
 loader = ModuleLoader(os.path.abspath('rpa'))
 app = FastAPI()
 
@@ -24,8 +21,8 @@ async def deposit(
         data: DepositData,
         background_tasks: BackgroundTasks
 ):
-    func = loader.load_function(RpaMethod.DEPOSIT.value)
-    background_tasks.add_task(func, data)
+    rpa = loader.load_class(RpaMethod.DEPOSIT.value)
+    background_tasks.add_task(rpa(data).run)
     return data
 
 

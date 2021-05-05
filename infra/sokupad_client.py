@@ -3,6 +3,8 @@ from random import randrange
 import time
 
 from selenium import webdriver
+# パスを通すためにimport
+import chromedriver_binary
 
 from const.page import page_setting
 
