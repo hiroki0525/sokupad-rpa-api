@@ -28,11 +28,8 @@ http://127.0.0.1:8000/docs
 `pytest`
 
 ## 注意事項
-* サーバー側の負荷や即パッドの利用規約、マナーなどを考慮してください。
+* [即パッド利用規約](https://www.jra.go.jp/dento/member/soku/yakujo_soku.pdf) やサーバー側の負荷、マナーなどを考慮してください。
+* Apache Licenseに則り、当プログラムから生じたいかなる損害についても一切責任は負いません。
 
 ## License
 Apache License 2.0
-
-## 参考
-* FastAPI
-https://qiita.com/bee2/items/75d9c0d7ba20e7a4a0e9
