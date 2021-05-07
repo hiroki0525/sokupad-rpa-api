@@ -1,4 +1,5 @@
 # sokupad-rpa-api
+即パッドを通じてRPAで馬券を購入するAPIです。
 
 ## 開発環境構築
 1. poetryの導入
@@ -25,6 +26,12 @@ http://127.0.0.1:8000/docs
 コマンド
 
 `pytest`
+
+## 注意事項
+* サーバー側の負荷や即パッドの利用規約、マナーなどを考慮してください。
+
+## License
+Apache License 2.0
 
 ## 参考
 * FastAPI
