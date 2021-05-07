@@ -1,4 +1,4 @@
-# sokupad-rpa-api
+# sokupad-rpa-api（β版）
 即パッドを通じてRPAで馬券を購入するAPIです。
 
 ## 開発環境構築
