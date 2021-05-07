@@ -1,16 +1,18 @@
 from datetime import datetime
 from uuid import uuid4
 
+from const import RpaMethod
 from const.status import Status
 
 
 class RpaState:
-    def __init__(self):
+    def __init__(self, method: RpaMethod, status: Status = Status.PROCESSING):
         now = datetime.now()
         self.__process_id = str(uuid4())
+        self.__status: Status = status
+        self.__method = method
         self.__created_at = now
         self.__updated_at = now
-        self.__status: Status = Status.PROCESSING
 
     def __eq__(self, other):
         if not isinstance(other, RpaState):
@@ -40,8 +42,8 @@ class RpaStateManager:
     __states: list[RpaState] = []
 
     @classmethod
-    def create(cls) -> str:
-        state = RpaState()
+    def create(cls, method: RpaMethod) -> str:
+        state = RpaState(method)
         cls.__states.append(state)
         return state.process_id
 

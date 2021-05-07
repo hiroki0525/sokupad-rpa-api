@@ -1,19 +1,14 @@
 import os
-from enum import Enum
 
 from fastapi import FastAPI, Body, BackgroundTasks
 
 from autoload.module_loader import ModuleLoader
 
+from const import RpaMethod
 from const.model import DepositData, BuyData
 
 loader = ModuleLoader(os.path.abspath('rpa'))
 app = FastAPI()
-
-
-class RpaMethod(Enum):
-    DEPOSIT = "deposit"
-    BUY = "buy"
 
 
 @app.post(f'/{RpaMethod.DEPOSIT.value}', response_model=DepositData, status_code=201)
