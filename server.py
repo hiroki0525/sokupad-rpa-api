@@ -12,7 +12,7 @@ loader = ModuleLoader(os.path.abspath('rpa'))
 app = FastAPI()
 
 
-@app.post(f'/{RpaMethod.DEPOSIT.value}', response_model=RpaResponse, status_code=201)
+@app.post(f'/{RpaMethod.DEPOSIT.value}', summary='入金', response_model=RpaResponse, status_code=201)
 async def deposit(
         data: DepositData,
         background_tasks: BackgroundTasks
@@ -23,7 +23,7 @@ async def deposit(
     return state
 
 
-@app.post(f'/{RpaMethod.BUY.value}', response_model=BuyData, status_code=201)
+@app.post(f'/{RpaMethod.BUY.value}', summary='馬券購入', response_model=BuyData, status_code=201)
 async def buy(
         data: BuyData = Body(...)
 ):
