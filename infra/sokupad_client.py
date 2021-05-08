@@ -6,7 +6,7 @@ from selenium import webdriver
 # パスを通すためにimport
 import chromedriver_binary
 
-from const.page import page_setting
+from const.page import page_config
 
 
 def dispatch(func, *args, **kwargs):
@@ -33,10 +33,10 @@ class SokupadClient:
 
     def login(self, id: str, password: str, p_ars: str) -> None:
         driver = self.__driver
-        pages = page_setting.get('chiho')
+        pages = page_config.get('chiho')
         login_page = pages['login']
         login_elements = login_page['elements']
-        driver.get(login_page.url)
+        driver.get(login_page['url'])
         id_input = driver.find_elements_by_css_selector(login_elements['id']['selector'])
         password_input = driver.find_elements_by_css_selector(login_elements['password']['selector'])
         p_ars_input = driver.find_elements_by_css_selector(login_elements['p_ars']['selector'])

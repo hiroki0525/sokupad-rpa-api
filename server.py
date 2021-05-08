@@ -20,7 +20,7 @@ async def deposit(
     rpa = loader.load_class(RpaMethod.DEPOSIT.value)
     state = RpaStateManager.create(RpaMethod.DEPOSIT, data)
     background_tasks.add_task(rpa(state).run)
-    return state
+    return state.__dict__
 
 
 @app.post(f'/{RpaMethod.BUY.value}', summary='馬券購入', response_model=BuyData, status_code=201)

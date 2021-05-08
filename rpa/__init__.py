@@ -16,8 +16,8 @@ class AbstractRpa(ABC):
         self.end()
 
     def start(self) -> None:
-        data = self._get_params
-        self._client.login(data['id'], data['password'], data['p_ars'])
+        data = self._get_params().user
+        self._client.login(data.id, data.password, data.p_ars)
 
     def end(self) -> None:
         self._client.quit()

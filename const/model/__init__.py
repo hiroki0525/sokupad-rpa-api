@@ -1,8 +1,7 @@
-from typing import TypeVar
+import datetime
+from typing import Type, Any
 
 from pydantic import BaseModel, Field
-
-from entity.state import RpaState
 
 
 class User(BaseModel):
@@ -31,9 +30,14 @@ class DepositData(BaseModel):
 
 class BuyData(BaseModel):
     user: User = Field(..., description="ユーザー情報")
-    purchases: list[Purchase] = Field(..., description="購入情報。配列で指定した順番で実行")
+    # purchases: list[Purchase] = Field(..., description="購入情報。配列で指定した順番で実行")
     option: ExecOption = Field(None, description="実行オプション")
 
 
 class RpaResponse(BaseModel):
-    state: RpaState = Field(..., description="RPAの実行情報")
+    process_id: str = Field(None, description="プロセスID")
+    method: str = Field(None, description="実行タイプ")
+    status: str = Field(None, description="実行ステータス")
+    params: Any = Field(None, description="実行パラメータ")
+    created_at: datetime.datetime = Field(None, description="RPA実行開始時間")
+    updated_at: datetime.datetime = Field(None, description="RPA実行更新時間")
