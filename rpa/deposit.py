@@ -4,4 +4,5 @@ from rpa import AbstractRpa
 class Deposit(AbstractRpa):
 
     def process(self) -> None:
-        data = self._data
+        params = self._get_params()
+        print(params)

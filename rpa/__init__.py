@@ -1,13 +1,14 @@
 from abc import ABC, abstractmethod
 
+from entity.state import RpaState
 from infra.sokupad_client import SokupadClient
 
 
 class AbstractRpa(ABC):
 
-    def __init__(self, data):
+    def __init__(self, state: RpaState):
         self._client = SokupadClient()
-        self._data = data
+        self._state = state
 
     def run(self):
         self.start()
@@ -15,7 +16,7 @@ class AbstractRpa(ABC):
         self.end()
 
     def start(self) -> None:
-        data = self._data
+        data = self._get_params
         self._client.login(data['id'], data['password'], data['p_ars'])
 
     def end(self) -> None:
@@ -24,3 +25,6 @@ class AbstractRpa(ABC):
     @abstractmethod
     def process(self) -> None:
         pass
+
+    def _get_params(self):
+        return self._state.params

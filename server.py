@@ -5,20 +5,22 @@ from fastapi import FastAPI, Body, BackgroundTasks
 from autoload.module_loader import ModuleLoader
 
 from const import RpaMethod
-from const.model import DepositData, BuyData
+from const.model import DepositData, BuyData, RpaResponse
+from entity.state import RpaStateManager
 
 loader = ModuleLoader(os.path.abspath('rpa'))
 app = FastAPI()
 
 
-@app.post(f'/{RpaMethod.DEPOSIT.value}', response_model=DepositData, status_code=201)
+@app.post(f'/{RpaMethod.DEPOSIT.value}', response_model=RpaResponse, status_code=201)
 async def deposit(
         data: DepositData,
         background_tasks: BackgroundTasks
 ):
     rpa = loader.load_class(RpaMethod.DEPOSIT.value)
-    background_tasks.add_task(rpa(data).run)
-    return data
+    state = RpaStateManager.create(RpaMethod.DEPOSIT, data)
+    background_tasks.add_task(rpa(state).run)
+    return state
 
 
 @app.post(f'/{RpaMethod.BUY.value}', response_model=BuyData, status_code=201)

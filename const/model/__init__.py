@@ -1,5 +1,8 @@
+from typing import TypeVar
+
 from pydantic import BaseModel, Field
-from typing import List
+
+from entity.state import RpaState
 
 
 class User(BaseModel):
@@ -11,7 +14,7 @@ class User(BaseModel):
 class Purchase(BaseModel):
     racecourse: str = Field(..., description="競馬場名"),
     type: str = Field(..., description="買い目")
-    horse_numbers: List[int] = Field(..., description="馬番")
+    horse_numbers: list[int] = Field(..., description="馬番")
     price: int = Field(..., ge=100, description="購入金額")
 
 
@@ -28,5 +31,9 @@ class DepositData(BaseModel):
 
 class BuyData(BaseModel):
     user: User = Field(..., description="ユーザー情報")
-    # purchases: List[Purchase] = Field(..., description="購入情報。配列で指定した順番で実行")
+    purchases: list[Purchase] = Field(..., description="購入情報。配列で指定した順番で実行")
     option: ExecOption = Field(None, description="実行オプション")
+
+
+class RpaResponse(BaseModel):
+    state: RpaState = Field(..., description="RPAの実行情報")

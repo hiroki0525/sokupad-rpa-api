@@ -1,18 +1,22 @@
 from datetime import datetime
+from typing import TypeVar, Generic
 from uuid import uuid4
 
 from const import RpaMethod
 from const.status import Status
 
+T = TypeVar('T')
 
-class RpaState:
-    def __init__(self, method: RpaMethod, status: Status = Status.PROCESSING):
+
+class RpaState(Generic[T]):
+    def __init__(self, method: RpaMethod, params: T, status: Status = Status.PROCESSING):
         now = datetime.now()
         self.__process_id = str(uuid4())
         self.__status: Status = status
         self.__method = method
         self.__created_at = now
         self.__updated_at = now
+        self.__params = params
 
     def __eq__(self, other):
         if not isinstance(other, RpaState):
@@ -27,11 +31,18 @@ class RpaState:
     def status(self) -> Status:
         return self.__status
 
+    @property
+    def params(self) -> T:
+        return self.__params
+
     def succeeded(self):
         self.__update(Status.SUCCESS)
 
     def failed(self):
         self.__update(Status.FAILURE)
+
+    def start_process(self):
+        self.__update(Status.PROCESSING)
 
     def __update(self, status: Status):
         self.__updated_at = datetime.now()
@@ -42,10 +53,10 @@ class RpaStateManager:
     __states: list[RpaState] = []
 
     @classmethod
-    def create(cls, method: RpaMethod) -> str:
-        state = RpaState(method)
+    def create(cls, method: RpaMethod, params: T) -> RpaState:
+        state = RpaState[T](method, params)
         cls.__states.append(state)
-        return state.process_id
+        return state
 
     @classmethod
     def remove(cls, process_id: str):
