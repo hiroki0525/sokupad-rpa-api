@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  api-dev:
+    container_name: "sokupad-rpa-api-dev"
+    build: .
+#    command: uvicorn server:app --reload
+    volumes:
+        - ./const:/usr/local/src/const
+        - ./entity:/usr/local/src/entity
+        - ./infra:/usr/local/src/infra
+        - ./rpa:/usr/local/src/rpa
+        - ./server.py:/usr/local/src/server.py
+    environment:
+      - TZ=Asia/Tokyo
+    restart: always
+#    expose:
+#      - "8000"
+    ports:
+      - "8000:8000"
