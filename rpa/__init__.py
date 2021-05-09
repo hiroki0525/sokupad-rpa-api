@@ -11,9 +11,13 @@ class AbstractRpa(ABC):
         self._state = state
 
     def run(self):
-        self.start()
-        self.process()
-        self.end()
+        try:
+            self.start()
+            self.process()
+        except Exception as e:
+            print(e)
+        finally:
+            self.end()
 
     def start(self) -> None:
         data = self._get_params().user
