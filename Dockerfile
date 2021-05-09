@@ -2,6 +2,8 @@ FROM python:3.9.4-alpine
 
 WORKDIR /usr/local/src
 
+# TODO: Chromeのインストール
+
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 

@@ -37,10 +37,10 @@ class SokupadClient:
         login_page = pages['login']
         login_elements = login_page['elements']
         driver.get(login_page['url'])
-        id_input = driver.find_elements_by_css_selector(login_elements['id']['selector'])
-        password_input = driver.find_elements_by_css_selector(login_elements['password']['selector'])
-        p_ars_input = driver.find_elements_by_css_selector(login_elements['p_ars']['selector'])
+        id_input = driver.find_elements_by_css_selector(login_elements['id']['selector'])[0]
+        password_input = driver.find_elements_by_css_selector(login_elements['password']['selector'])[0]
+        p_ars_input = driver.find_elements_by_css_selector(login_elements['p_ars']['selector'])[0]
         dispatch(id_input.send_keys, id)
         dispatch(password_input.send_keys, password)
         dispatch(p_ars_input.send_keys, p_ars)
-        dispatch(driver.find_elements_by_css_selector(login_elements['login']['selector']).click)
+        dispatch(driver.find_elements_by_css_selector(login_elements['login']['selector'])[0].click)
