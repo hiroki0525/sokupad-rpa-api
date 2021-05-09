@@ -1,1 +1,1 @@
-poetry export -f requirements.txt > requirements.txt
+poetry export --dev -f requirements.txt > requirements.txt

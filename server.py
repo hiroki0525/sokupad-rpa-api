@@ -8,6 +8,15 @@ from const import RpaMethod
 from const.model import DepositData, BuyData, RpaResponse
 from entity.state import RpaStateManager
 
+try:
+    import debugpy
+    print("waiting...")
+    debugpy.listen(("0.0.0.0", 8888))
+    debugpy.wait_for_client()
+    print("done")
+except Exception as e:
+    print("not debug mode")
+
 loader = ModuleLoader(os.path.abspath('rpa'))
 app = FastAPI()
 

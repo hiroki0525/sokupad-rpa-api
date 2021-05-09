@@ -14,7 +14,9 @@ services:
     environment:
       - TZ=Asia/Tokyo
     restart: always
-#    expose:
-#      - "8000"
+    expose:
+      - "8000"
+      - "8888"
     ports:
       - "8000:8000"
+      - "8888:8888"
