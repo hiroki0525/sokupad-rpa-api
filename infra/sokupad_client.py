@@ -8,6 +8,14 @@ import chromedriver_binary
 
 from const.page import page_config
 
+def commit(func):
+    def wrapper(*args, **kwargs):
+        print(args)
+        client = args[0]
+        if not client.commit:
+            return
+        func(*args, **kwargs)
+    return wrapper
 
 class SokupadClient:
 
@@ -19,6 +27,10 @@ class SokupadClient:
         self.__driver = webdriver.Chrome(options=options)
         self.__commit = commit
         self.__pages = page_config.get('chiho')
+
+    @property
+    def commit(self):
+        return self.__commit
 
     def get(self, url: str) -> None:
         return self._dispatch(self.__driver.get, url)
@@ -48,6 +60,7 @@ class SokupadClient:
         self._dispatch(deposit_input.send_keys, price)
         self._dispatch(confirm_button.click)
 
+    @commit
     def execute_deposit_and_go(self, password):
         driver = self.__driver
         elements = self.__pages['execute_deposit']['elements']
